@@ -1,0 +1,61 @@
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+ <p>{{ message }}</p>
+{% endfor %}
+{% endif %}
+{% endwith %}
+<form action="/add_autolectura" method = "POST" enctype = "multipart/form-data">
+ <div class="row">
+  <input type="text" name="idpersona" placeholder="IDpersona">
+  <input type="text" name="idsuministro" placeholder="IDsuministro">
+ </div>
+ <div class="row">
+  <input type="file" name="file" placeholder="FotoACargar" autocomplete = "off" required>
+ </div>
+ <div class="row">
+  <button type="submit">
+   	Save
+ </button>
+ </div>
+  {% if filename %}
+    <div class="row">
+      <img src="{{ url_for('display_image', filename = filename) }}">
+    </div>
+  {% endif %}
+</form>
+
+<table>
+ <tr>
+  <thead>
+   <td>dni</td>
+   <td>cuenta</td>
+   <td>fecha de carga de la foto</td>
+   <td>hora de carga de la foto</td>
+   <td>archivo de foto</td>
+   <td>fecha de obtencion de lectura</td>
+   <td>hora de obtencion de lectura</td>
+   <td>lectura</td>
+   <td>estado</td>
+  </thead>
+  <tbody>
+   {% for autolectura in autolecturas %}
+    <tr>
+     <td> {{autolectura.1}} </td>
+     <td> {{autolectura.2}} </td>
+     <td> {{autolectura.3}} </td>
+     <td> {{autolectura.4}} </td>
+     <td> {{autolectura.5}} </td>
+     <td> {{autolectura.6}} </td>
+     <td> {{autolectura.7}} </td>
+     <td> {{autolectura.8}} </td>
+     <td> {{autolectura.9}} </td>
+     <td>
+      <a href="/edit_autolectura/{{autolectura.0}}">edit</a>
+      <a href="/delete_autolectura/{{autolectura.0}}">delete</a>
+     </td>
+    </tr>
+   {% endfor %}
+  </tbody>
+ </tr>
+</table>
