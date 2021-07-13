@@ -10,3 +10,6 @@ Aplicación Web que carga una imagen de la PC y la guarda en Base de Datos, esta
 
 ## Ejecución
 La ejecución se realiza por Jupiter notebook.
+
+## Nota
+Los botones de "edit" y "delete" no estan implementados y generaran un error al ser ejecutados.
